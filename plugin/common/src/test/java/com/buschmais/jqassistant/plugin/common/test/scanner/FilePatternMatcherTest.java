@@ -32,7 +32,7 @@ public class FilePatternMatcherTest {
     @Test
     public void includeAndExcludeSingleFilePatterns() throws IOException {
         configure("test.*", "*.xml");
-        assertThat(filePatternMatcher.accepts("test.xml"), equalTo(false));
+        assertThat(filePatternMatcher.accepts("test.xml"), equalTo(true));
         assertThat(filePatternMatcher.accepts("test.txt"), equalTo(true));
         assertThat(filePatternMatcher.accepts("other.txt"), equalTo(false));
     }
@@ -56,10 +56,10 @@ public class FilePatternMatcherTest {
     @Test
     public void includeAndExcludeMultipleFilePatterns() throws IOException {
         configure("test1.*,test2.*", "*.xml, *.xsd");
-        assertThat(filePatternMatcher.accepts("test1.xml"), equalTo(false));
-        assertThat(filePatternMatcher.accepts("test2.xml"), equalTo(false));
-        assertThat(filePatternMatcher.accepts("test1.xsd"), equalTo(false));
-        assertThat(filePatternMatcher.accepts("test2.xsd"), equalTo(false));
+        assertThat(filePatternMatcher.accepts("test1.xml"), equalTo(true));
+        assertThat(filePatternMatcher.accepts("test2.xml"), equalTo(true));
+        assertThat(filePatternMatcher.accepts("test1.xsd"), equalTo(true));
+        assertThat(filePatternMatcher.accepts("test2.xsd"), equalTo(true));
         assertThat(filePatternMatcher.accepts("test1.txt"), equalTo(true));
         assertThat(filePatternMatcher.accepts("test2.txt"), equalTo(true));
         assertThat(filePatternMatcher.accepts("other.txt"), equalTo(false));

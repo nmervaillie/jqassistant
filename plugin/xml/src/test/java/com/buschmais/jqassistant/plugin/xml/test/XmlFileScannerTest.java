@@ -46,7 +46,7 @@ public class XmlFileScannerTest {
     public void includeAndExcludeFilePattern() throws IOException {
         configure("test.*", "*.xml");
         assertThat(scannerPlugin.accepts(fileResource, "test.txt", DefaultScope.NONE), equalTo(true));
-        assertThat(scannerPlugin.accepts(fileResource, "test.xml", DefaultScope.NONE), equalTo(false));
+        assertThat(scannerPlugin.accepts(fileResource, "test.xml", DefaultScope.NONE), equalTo(true));
     }
 
     private void configure(String includes, String excludes) {

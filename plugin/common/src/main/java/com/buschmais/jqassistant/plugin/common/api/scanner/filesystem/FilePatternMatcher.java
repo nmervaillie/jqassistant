@@ -34,14 +34,10 @@ public class FilePatternMatcher {
     public boolean accepts(String path) {
         boolean result;
         if (includeFilePatterns != null) {
-            result = matches(path, includeFilePatterns);
-        } else {
-            result = true;
+            return matches(path, includeFilePatterns);
         }
-        if (excludeFilePatterns != null) {
-            result = result && !matches(path, excludeFilePatterns);
-        }
-        return result;
+
+        return excludeFilePatterns == null || !matches(path, excludeFilePatterns);
     }
 
     private boolean matches(String path, Set<String> filePatterns) {
